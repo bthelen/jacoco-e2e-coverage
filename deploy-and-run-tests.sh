@@ -34,16 +34,27 @@ cf start jacoco-tcpserver
 # start client
 cf start jacoco-e2e-coverage
 
+sleep 5
+
 # run tests against client
 mvn test -Dapp.url="https://jacoco-e2e-coverage.apps.pcfone.io" -Dparameter=5
 
+sleep 5
+
 # stop and undeploy client
 cf stop jacoco-e2e-coverage
-cf delete jacoco-e2e-coverage -f
+
+sleep 5
 
 # copy file from jacoco tcp server -- but how to get password!!
 # scp -P 2222 -o User=cf:$(cf app jacoco-tcpserver --guid)/0  ssh.run.pcfone.io:/home/vcap/app/jacoco-server.exec .
-./get_jacoco_report.exp $(cf app jacoco-tcpserver --guid) $(cf ssh-code)
+./get_jacoco_report.exp $(cf app jacoco-tcpserver --guid) $(cf ssh-code) ssh.run.pcfone.io
+
+# Run mvn to create the report from that file we just downloaded
+mvn antrun:run@generate-report -Dskip.int.tests.report=false
+
+# Undeploy the app we are testing
+cf delete jacoco-e2e-coverage -f
 
 # stop and undeploy jacoco tcp server
 cf delete jacoco-tcpserver -f

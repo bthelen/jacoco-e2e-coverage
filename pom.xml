@@ -128,7 +128,7 @@
 								<report>
 									<executiondata>
 										<fileset dir="${basedir}">
-											<include name="target/jacoco-it*.exec"/>
+											<include name="target/jacoco-server.exec"/>
 										</fileset>
 									</executiondata>
 									<structure name="jacoco-multi Coverage Project">
