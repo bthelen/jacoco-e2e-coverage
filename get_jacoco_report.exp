@@ -1,0 +1,8 @@
+#!/usr/bin/expect
+		set app_guid [lindex $argv 0]
+		set ssh_code [lindex $argv 1]
+        spawn scp -P 2222 -o User=cf:$app_guid/0  ssh.run.pcfone.io:/home/vcap/app/jacoco-server.exec .
+        set pass "$ssh_code"
+        expect {
+        password: {send "$pass\r"; exp_continue}
+                  }

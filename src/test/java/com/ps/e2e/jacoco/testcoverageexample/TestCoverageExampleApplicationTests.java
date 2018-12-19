@@ -15,12 +15,12 @@ public class TestCoverageExampleApplicationTests {
     @Test
     public void anotherBranchTest() {
         //given
-        int appPort =  Integer.parseInt(System.getProperty("app.port"));
+        String appUrl =  System.getProperty("app.url");
         int parameter = Integer.parseInt(System.getProperty("parameter"));
 
         //when
         Integer result = testRestTemplate.getForObject(
-                "http://localhost:" + appPort + "/test?parameter=" + parameter, Integer.class);
+                appUrl + "/test?parameter=" + parameter, Integer.class);
 
         //then
         assertThat(result).isEqualTo(3);
