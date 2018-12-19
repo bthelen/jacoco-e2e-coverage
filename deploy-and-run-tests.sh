@@ -17,9 +17,6 @@ cf push -f manifest.yml --no-start
 # create the cups for the jacoco tcpserver
 cf cups my-jacoco-service -p '{"address":"jacoco-tcpserver.apps.internal","includes":"*", "port":"6300"}'
 
-# bind the cups to the jacoco-tcpserver
-cf bind-service jacoco-tcpserver my-jacoco-service
-
 # build and deploy --no-start client
 popd
 mvn clean install -DskipTests
