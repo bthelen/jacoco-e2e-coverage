@@ -3,10 +3,10 @@
 set -ex
 
 # This script is going to assume some things
-# 1.  You have checked on bthelen/jacoco-e2e-coverage and bthelen/jacoco-tcpserver as to the same directory.
+# 1.  You have checked out bthelen/jacoco-e2e-coverage and bthelen/jacoco-tcpserver as to the same directory.
 # 2.  You have already cf logged in to the foundation you wish to target
 # 3.  You have permission to cf add-network-policy
-# 4.  You have "expect" installed
+# 4.  You have "expect" installed where this will run
 # 5.  Run this script from the directory where bthelen/jacoco-e2e-coverage is checked out
 
 # build and push --no-start jacoco tcp server
