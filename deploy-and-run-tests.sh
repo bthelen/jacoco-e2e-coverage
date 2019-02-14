@@ -17,10 +17,16 @@ sleep 5
 # run tests against client
 mvn test -Dapp.url="https://jacoco-e2e-coverage.apps.pcfone.io" -Dparameter=5
 
+# If you want more coverage...run this one as well
+# mvn test -Dapp.url="https://jacoco-e2e-coverage.apps.pcfone.io" -Dparameter=11
+
+set +x
 echo "**************************************************************************************"
 echo "Please run \"cf ssh -N -T -L 5000:localhost:5000 jacoco-e2e-coverage\" in another window"
+echo "Waiting 25 seconds for you to get that up and running..."
 echo "**************************************************************************************"
 sleep 25
+set -x
 
 # get the results via JMX from the server.
 # cf ssh -N -T -L 5000:localhost:5000 jacoco-e2e-coverage
